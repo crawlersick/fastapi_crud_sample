@@ -2,3 +2,6 @@ fastapi
 fastapi-crudrouter
 uvicorn
 aiofiles
+python-dotenv
+sqlalchemy
+pymysql

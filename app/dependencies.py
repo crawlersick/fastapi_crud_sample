@@ -1,6 +1,7 @@
 from fastapi import Header, HTTPException
 from fastapi import Request
 import logging
+from .internal.settings import Settings
 
 
 async def get_token_header(x_token: str = Header(...)):
@@ -10,7 +11,7 @@ async def get_token_header(x_token: str = Header(...)):
 
 # async def get_query_token(token: str, request: Request):
 async def get_query_token(request: Request):
-
+    logging.info(Settings().ENVIRONMENT)
     logging.info(request.url.path)
     logging.info(request.headers)
     logging.info(request.query_params)

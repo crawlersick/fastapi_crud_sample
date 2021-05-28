@@ -12,3 +12,12 @@ tags_metadata = [
         },
     },
 ]
+
+from pydantic import BaseSettings
+import os
+class Settings(BaseSettings):
+    ENVIRONMENT: str
+    class Config:
+        env_file = os.getenv("running_env","test") + ".env"
+
+
