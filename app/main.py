@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from .dependencies import get_query_token, get_token_header
 from .internal import admin, settings
-from .routers import items, users, potato
+from .routers import items, users, potato, database_sample
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import sys
@@ -17,6 +17,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG,
                            '%(levelname)s - %(message)s',)
 
 origins = ['*']
+
 
 app = FastAPI(
     dependencies=[Depends(get_query_token)],
@@ -63,6 +64,7 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(items.router)
 app.include_router(potato.router)
+app.include_router(database_sample.router, prefix="/dbsp")
 app.include_router(
     admin.router,
     prefix="/admin",

@@ -13,11 +13,16 @@ tags_metadata = [
     },
 ]
 
+
 from pydantic import BaseSettings
 import os
+
+
 class Settings(BaseSettings):
     ENVIRONMENT: str
+    db1url: str = "sqlite:///./sql_app.db"
+
     class Config:
-        env_file = os.getenv("running_env","test") + ".env"
+        env_file = os.getenv("running_env", "test") + ".env"
 
 
